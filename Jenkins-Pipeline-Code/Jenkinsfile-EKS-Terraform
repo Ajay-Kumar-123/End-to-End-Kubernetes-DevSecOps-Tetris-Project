@@ -37,7 +37,7 @@ pipeline {
         }
         stage('Terraform Plan') {
             steps {
-                withAWS(credentials: 'aws-secret', region: 'ap-south-2') {
+                withAWS(credentials: 'aws-key', region: 'ap-south-2') {
                 dir('EKS-TF') {
                     script {
                         sh "terraform plan -var-file=${params.'File-Name'}"
@@ -48,7 +48,7 @@ pipeline {
         }
         stage('Terraform Action') {
             steps {
-                withAWS(credentials: 'aws-secret', region: 'ap-south-2') { 
+                withAWS(credentials: 'aws-key', region: 'ap-south-2') { 
                 script {
                     echo "${params.'Terraform-Action'}"
                     dir('EKS-TF') {
