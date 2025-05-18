@@ -11,6 +11,10 @@ resource "aws_eks_node_group" "eks-node-group" {
     min_size     = 1
   }
 
+  update_config {
+    max_unavailable = 1
+  }
+
   ami_type       = "AL2_x86_64"
   instance_types = ["t3.medium"]
   disk_size      = 20
@@ -21,3 +25,28 @@ resource "aws_eks_node_group" "eks-node-group" {
     aws_iam_role_policy_attachment.AmazonEKS_CNI_Policy
   ]
 }
+
+  locals {
+    eks_addons = {
+      "vpc-cni" = {
+        version = var.vpc-cni-version
+        resolve_conflicts = "OVERWRITE"
+      },
+      "kube-proxy" = {
+        version = var.kube-proxy-version
+        resolve_conflicts = "OVERWRITE"
+      }
+    }
+  }
+
+  #Create the EKS add-ons
+  resource "aws_eks_addon" "eks-add-ons" {
+    for_each = local.eks_addons
+
+    cluster_name = aws_eks_cluster.eks-cluster.name
+    addon_name = each.key
+    addon_version = each.value.version
+    resolve_conflicts_on_update = each.value.resolve_conflicts
+  }
+
+

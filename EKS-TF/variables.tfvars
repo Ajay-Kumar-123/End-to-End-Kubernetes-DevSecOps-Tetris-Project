@@ -10,3 +10,5 @@ iam-policy-eks      = "Tetris-iam-policy-eks"
 iam-policy-node     = "Tetris-iam-policy-node"
 cluster-name        = "Tetris-EKS-Cluster"
 eksnode-group-name  = "Tetris-Node-Group"
+vpc-cni-version     = "v1.18.0-eksbuild.1"
+kube-proxy-version  = v1.28.6-eksbuild.2

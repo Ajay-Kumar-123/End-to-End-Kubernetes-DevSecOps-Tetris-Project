@@ -1,15 +1,16 @@
 terraform {
   backend "s3" {
-    bucket         = "devsecops-demo-s3"
+    bucket         = "eks-s3-be"
     region         = "ap-south-1"
     key            = "End-to-End-Kubernetes-DevSecOps-Tetris-Project/Jenkins-Server-TF/terraform.tfstate"
-    dynamodb_table = "devsecops-demo"
+    #dynamodb_table = "devsecops-demo"
     encrypt        = true
+    use_lockfile = true
   }
-  required_version = ">=0.13.0"
+  required_version = ">=1.10"
   required_providers {
     aws = {
-      version = ">= 2.7.0"
+      version = ">= 5.0"
       source  = "hashicorp/aws"
     }
   }
