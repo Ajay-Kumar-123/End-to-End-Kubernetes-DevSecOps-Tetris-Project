@@ -90,7 +90,7 @@ pipeline {
         }
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/Ajay-Kumar-123/End-to-End-Kubernetes-DevSecOps-Tetris-Project.git'
+                git branch: 'test_branch-1', url: 'https://github.com/Ajay-Kumar-123/End-to-End-Kubernetes-DevSecOps-Tetris-Project.git'
             }
         }
         stage('Update Deployment file') {
