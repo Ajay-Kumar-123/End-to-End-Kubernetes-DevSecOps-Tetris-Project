@@ -31,10 +31,6 @@ resource "aws_eks_node_group" "eks-node-group" {
       "vpc-cni" = {
         version = var.vpc-cni-version
         resolve_conflicts = "OVERWRITE"
-      },
-      "kube-proxy" = {
-        version = var.kube-proxy-version
-        resolve_conflicts = "OVERWRITE"
       }
     }
   }
