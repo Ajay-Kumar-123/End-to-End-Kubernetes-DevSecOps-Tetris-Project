@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Checkout from Git') {
             steps {
-                git branch: 'main', url: 'https://github.com/Ajay-Kumar-123/End-to-End-Kubernetes-DevSecOps-Tetris-Project.git'
+                git branch: 'test_branch-1', url: 'https://github.com/Ajay-Kumar-123/End-to-End-Kubernetes-DevSecOps-Tetris-Project.git'
             }
         }
         stage('Sonarqube Analysis') {
