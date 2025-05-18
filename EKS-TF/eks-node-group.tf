@@ -26,23 +26,3 @@ resource "aws_eks_node_group" "eks-node-group" {
   ]
 }
 
-  locals {
-    eks_addons = {
-      "vpc-cni" = {
-        version = var.vpc-cni-version
-        resolve_conflicts = "OVERWRITE"
-      }
-    }
-  }
-
-  #Create the EKS add-ons
-  resource "aws_eks_addon" "eks-add-ons" {
-    for_each = local.eks_addons
-
-    cluster_name = aws_eks_cluster.eks-cluster.name
-    addon_name = each.key
-    addon_version = each.value.version
-    resolve_conflicts_on_update = each.value.resolve_conflicts
-  }
-
-
